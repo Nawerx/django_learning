@@ -21,7 +21,5 @@ from myapp.views import index, show_int
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', index),
-    # path('show/<int:value>', show_int)
-    path('myapp/', include('myapp.urls'))
+    path('', include('myapp.urls'))
 ]
