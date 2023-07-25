@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+</head>
+<body>
+    <a href="{% url 'show_tag' %}">go admin</a>
+<ul>
+    {% for note in notes %}
+    <li>
+        {{ note.title }} {{ note.content }} {{ note.id }}
+    </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
+from .models import Note
+
 
 def index(request: HttpRequest):
-    return HttpResponse("<h1>Hello World</h1>")
+    notes: Note = Note.objects.all()
+    return render(request, "myapp/index.html", {"notes": notes})
 
 
 def show_int(request: HttpRequest, value: int):
@@ -16,3 +19,4 @@ def show_str(request: HttpResponse, value: str):
 
 def show(request: HttpResponse,):
     return HttpResponse("<h1>Tag h1</h1>")
+
