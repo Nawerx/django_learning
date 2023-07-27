@@ -2,12 +2,15 @@ import django.contrib.auth.models
 from django.core.validators import MinLengthValidator, MaxLengthValidator, validate_email
 from django.db import models
 from django.utils.timezone import datetime
+from django.urls import reverse
+
+
 
 class Note(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(null=False, max_length=32, verbose_name="Назва")
     content = models.TextField(null=False, verbose_name="Контент")
-    created_as = models.DateTimeField(null=False, default=datetime.now)
+    created_at = models.DateTimeField(null=False, auto_now_add=True, verbose_name="Створено")
 
     class Meta:
         managed = True
@@ -18,6 +21,9 @@ class Note(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("show_note", kwargs={'id': self.id})
+
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(unique=True, validators=[MinLengthValidator(4), MaxLengthValidator(32)])
@@ -27,4 +33,7 @@ class User(models.Model):
     class Meta:
         managed = True
         db_table = "users"
+
+
+
 

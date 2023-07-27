@@ -17,6 +17,15 @@ def show_str(request: HttpResponse, value: str):
     return HttpResponse(f"STRValue = {value=}")
 
 
-def show(request: HttpResponse,):
+def show(request: HttpResponse):
     return HttpResponse("<h1>Tag h1</h1>")
+
+def show_note(requset: HttpResponse, id: int):
+    try:
+        note = Note.objects.get(id=id)
+    except Note.DoesNotExist:
+        return(HttpResponse(f"Не існує записки з айди {id}"))
+
+    return HttpResponse(f"<h1>{note.title} {note.content} </h1>")
+
 

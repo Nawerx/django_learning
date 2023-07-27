@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
 </head>
 <body>
-    <a href="{% url 'show_tag' %}">go admin</a>
+    <a href="{% url 'admin:index' %}">go admin</a>
 <ul>
     {% for note in notes %}
     <li>
