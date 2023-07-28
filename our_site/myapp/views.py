@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
-from .models import Note
+from .models import Note, User
 
 
 def index(request: HttpRequest):
@@ -27,5 +27,13 @@ def show_note(requset: HttpResponse, id: int):
         return(HttpResponse(f"Не існує записки з айди {id}"))
 
     return HttpResponse(f"<h1>{note.title} {note.content} </h1>")
+
+def show_user(requset: HttpResponse, id: int):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return(HttpResponse(f"Не існує користувача з айди {id}"))
+
+    return HttpResponse(f"<h1>{user.name} {user.email} </h1>")
 
 

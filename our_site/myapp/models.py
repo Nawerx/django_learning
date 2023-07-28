@@ -18,21 +18,29 @@ class Note(models.Model):
         verbose_name = "Замітку"
         verbose_name_plural = "Замітки"
 
-    def __str__(self):
-        return self.title
-
     def get_absolute_url(self):
         return reverse("show_note", kwargs={'id': self.id})
 
+
 class User(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.TextField(unique=True, validators=[MinLengthValidator(4), MaxLengthValidator(32)])
+    name = models.TextField(unique=True, validators=[MinLengthValidator(4), MaxLengthValidator(32)],
+                            verbose_name="Користувач")
+
     password = models.TextField(validators=[MinLengthValidator(8), MaxLengthValidator(32)])
-    email = models.CharField(validators=[validate_email])
+    email = models.CharField(validators=[validate_email], verbose_name="Пошта")
 
     class Meta:
         managed = True
         db_table = "users"
+        verbose_name = "Користувача"
+        verbose_name_plural = "Користувачі"
+
+    def get_absolute_url(self):
+        return reverse("show_user", kwargs={'id': self.id})
+
+
+
 
 
 
