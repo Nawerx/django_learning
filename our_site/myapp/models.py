@@ -1,9 +1,6 @@
-import django.contrib.auth.models
 from django.core.validators import MinLengthValidator, MaxLengthValidator, validate_email
 from django.db import models
-from django.utils.timezone import datetime
 from django.urls import reverse
-
 
 
 class Note(models.Model):

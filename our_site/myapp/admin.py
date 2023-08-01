@@ -17,6 +17,5 @@ class User_admin(admin.ModelAdmin):
     list_display_links = ("name",)
 
 
-
 admin.site.register(Note, Note_admin)
 admin.site.register(User, User_admin)
