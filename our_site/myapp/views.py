@@ -6,7 +6,7 @@ from django.http import HttpRequest, HttpResponse
 from django.utils.decorators import method_decorator
 from django.utils.html import escape
 from django.views import View
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from .models import Note, User
 from django.views.decorators.csrf import csrf_exempt
 
@@ -37,13 +37,25 @@ def show_int(request: HttpRequest, value: int):
     return HttpResponse(f"INTValue = {value}")
 
 
-class Notes_list_view(ListView):
+class NoteCreateView(CreateView):
+    template_name = "myapp/note_form.html"
+    model = Note
+    fields = ("title", "content")
+
+
+class NoteUpdateView(UpdateView):
+    template_name = "myapp/note_form.html"
+    model = Note
+    fields = ("title", "content")
+
+
+class NotesListview(ListView):
     model = Note
     template_name = "myapp/index.html"
     context_object_name = "notes"
 
 
-class Note_view(DetailView):
+class NoteView(DetailView):
     model = Note
     template_name = "myapp/note.html"
     pk_url_kwarg = "id"

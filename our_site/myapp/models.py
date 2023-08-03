@@ -8,6 +8,7 @@ class Note(models.Model):
     title = models.CharField(null=False, max_length=32, verbose_name="Назва")
     content = models.TextField(null=False, verbose_name="Контент")
     created_at = models.DateTimeField(null=False, auto_now_add=True, verbose_name="Створено")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Змінено")
 
     class Meta:
         managed = True

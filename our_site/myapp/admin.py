@@ -7,7 +7,7 @@ from myapp.models import Note, User
 
 class Note_admin(admin.ModelAdmin):
     search_fields = ("title", "content")
-    list_display = ("id", "title", "content", "created_at")
+    list_display = ("id", "title", "content", "created_at", "updated_at")
     list_display_links = ("title",)
 
 

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-      <form method="post" action="{% url 'create_note' %}">
+      <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <button>Submit</button>
