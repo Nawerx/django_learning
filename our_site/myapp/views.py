@@ -26,7 +26,7 @@ def show_form(request: HttpRequest):
     elif request.method == "POST":
         form = CreateNoteForm(request.POST)
         if form.is_valid():
-            note = Note.objects.create(**form.cleaned_data)
+            note = form.save()
 
         return redirect(note.get_absolute_url())
 
