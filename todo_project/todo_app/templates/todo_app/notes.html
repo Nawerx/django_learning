@@ -1,0 +1,49 @@
+{% extends 'todo_app/base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script src="{% static 'todo_app/js/notes.js' %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+<form action="{% url 'add_note' %}" method="POST" class="note-form">
+	{% csrf_token %}
+	{{ form.title }}
+	{{ form.content }}
+	<button type="submit">Add task</button>
+</form>
+
+<div id="mylist">
+	<input class="search" placeholder="Search" />
+	<button class="sort" data-sort="note_id">Sort by id</button>
+	<button class="sort" data-sort="title">Sort by title</button>
+<ul class="list">
+{% for note in notes %}
+<li>
+	<details>
+		<summary>
+			{% if note.finished %}
+			<s><span class="title">{{ note.title }}</span></s>
+			<input type="checkbox" name="is_done" data-note-id="{{ note.id }}" checked>
+			{% else %}
+			<span class="title">{{ note.title }}</span>
+			<input type="checkbox" name="is_done" data-note-id="{{ note.id }}">
+			{% endif %}
+		</summary>
+		<span class="note_id" hidden>{{ note.id }}</span>
+		{% comment %} <form action="/delete_note" method="GET" class="note">
+			<p>{{ note.content }}</p>
+			<input type="hidden" value="{{ note.id }}" name="note_id">
+			<button class="del_note" type="submit">Delete this note</button>
+		</form> {% endcomment %}
+	</details>
+</li>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock content %}
