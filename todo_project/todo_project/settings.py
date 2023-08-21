@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from .config import load_config
+# Build aths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+cfg = load_config()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -78,11 +80,11 @@ WSGI_APPLICATION = "todo_project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_todo",
-        "USER": "postgres",
-        "PASSWORD": "root",
-        "HOST": "localhost",
-        "PORT": 5432,
+        "NAME": cfg.db.database,
+        "USER": cfg.db.user,
+        "PASSWORD": cfg.db.password,
+        "HOST": cfg.db.host,
+        "PORT": cfg.db.port,
     }
 }
 
