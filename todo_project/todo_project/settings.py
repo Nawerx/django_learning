@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "uk-uk"
 
-TIME_ZONE = "Europe/Warsaw"
+TIME_ZONE = "Europe/Kyiv"
 
 USE_I18N = True
 

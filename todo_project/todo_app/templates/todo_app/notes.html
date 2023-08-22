@@ -35,11 +35,12 @@
 			{% endif %}
 		</summary>
 		<span class="note_id" hidden>{{ note.id }}</span>
-		{% comment %} <form action="/delete_note" method="GET" class="note">
-			<p>{{ note.content }}</p>
-			<input type="hidden" value="{{ note.id }}" name="note_id">
-			<button class="del_note" type="submit">Delete this note</button>
-		</form> {% endcomment %}
+		 <form action="{% url 'delete_note' pk=note.id %}" method="POST" class="note-form">
+			 {% csrf_token %}
+    	<p>{{ note.content }}</p>
+    	<button class="del_note" type="submit">Delete this note</button>
+</form>
+
 	</details>
 </li>
 {% endfor %}

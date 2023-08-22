@@ -15,7 +15,9 @@
 				{{ form.password }}
 			</div>
 			{% if form.errors %}
-			{{ form.errors.items }}
+			{% for error in form.errors.values %}
+			{{ error }}
+			{% endfor %}
 			{% endif %}
 			<button id="login_btn" class="input-btn" type="submit">Log In</button>
 			<div class="error-box" style="display: none"></div>

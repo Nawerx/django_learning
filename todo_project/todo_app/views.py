@@ -1,7 +1,7 @@
 from typing import Any, Dict
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DeleteView
 from .forms import UserCreateForm, LoginUserForm, NoteForm
 from django.urls import reverse_lazy
 from .models import Note
@@ -58,3 +58,12 @@ class CreateNoteView(CreateView):
     #     if "!" in title:
     #         print("! in title")
     #     return super().title_valid(title)
+
+class DeleteNoteView(DeleteView):
+    template_name = "todo_app/notes.html"
+    model = Note
+    form_class = NoteForm
+    success_url = reverse_lazy("notes")
+
+    def post(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)

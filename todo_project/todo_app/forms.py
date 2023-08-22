@@ -28,7 +28,7 @@ class LoginUserForm(AuthenticationForm):
         max_length=150,
         widget=forms.TextInput(
             attrs={"placeholder": "Username", "id": "inputUsername", "class": "input"}
-        ),
+        )
     )
     password = forms.CharField(
         widget=forms.PasswordInput(
